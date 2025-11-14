@@ -343,6 +343,10 @@ header {
 
 footer {
   background-color: #b58979; /* marrom rosado */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   color: #2c2c2c;
   padding: 10px 70px;
   font-family: 'Poppins', sans-serif;
@@ -480,9 +484,10 @@ footer {
 }
 
 .dashboard h1 {
-  font-size: 2.2rem;
+  font-size:60px;
   color: var(--cor-fonte);
   text-align: center;
+  font-family: "Georgia", serif;
 }
 
 .linha-dashboard {
@@ -519,3 +524,120 @@ footer {
   flex-direction: column;
   gap: 20px;
 }
+
+/*=== LISTAR USUÁRIO===*/
+
+/* ======== CONTAINER GERAL ======== */
+.usuarios-container {
+    background: var(--cor-fonte);
+    min-height: 100vh;
+    padding: 20px 30px;
+}
+
+/* ======== TÍTULO ======== */
+.titulo-pagina {
+    text-align: center;
+    font-size: 60px;
+    margin-bottom: 40px;
+    color: #000000;
+    font-family: "Georgia", serif;
+}
+
+/* ======== GRID ======== */
+.usuarios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 35px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ======== CARD ======== */
+.usuario-card {
+    background: #f5d3c4;
+    border: 2px solid #9c6f5e;
+    border-radius: 10px;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    transition: 0.2s;
+}
+.usuario-card:hover {
+    transform: scale(1.03);
+}
+
+/* ======== TEXTOS ======== */
+.usuario-nome {
+    font-size: 22px;
+    font-weight: 600;
+    color: #000;
+}
+
+.usuario-email-label {
+    font-size: 13px;
+    margin-top: 5px;
+    color: #4a2e25;
+}
+
+.usuario-email {
+    font-size: 15px;
+    color: #000;
+}
+
+/* ======== AÇÕES (botões) ======== */
+.usuario-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-editar,
+.btn-deletar {
+    background: #e5c2b3;
+    border: 1px solid #9c6f5e;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-editar:hover,
+.btn-deletar:hover {
+    background: #dcb4a4;
+}
+
+.icon-sm {
+    width: 18px;
+    height: 18px;
+}
+
+/* ======== ESTADO VAZIO ======== */
+.estado-vazio {
+    margin-top: 40px;
+    text-align: center;
+    color: #4a2e25;
+}
+
+/* ======== BOTÃO ADICIONAR (FAB) ======== */
+.btn-add {
+    position: fixed;
+    bottom: 15px;
+    right: 20px;
+    background: #be9880;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-size: 16px;
+    color: black;
+    border: 2px solid #6b4c3b;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.btn-add:hover {
+    background: #a77f69;
+}
+

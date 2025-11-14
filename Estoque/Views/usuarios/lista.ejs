@@ -1,0 +1,79 @@
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+<%- include('../includes/header.ejs', { titulo: 'Usuários' }) %>
+
+<main class="usuarios-container">
+
+  <!-- Título -->
+  <h1 class="titulo-pagina">Usuários</h1>
+
+  <!-- Grid -->
+  <div class="usuarios-grid">
+    <% for (let usuario of usuarios) { %>
+
+      <div class="usuario-card" title="Clique para editar ou excluir">
+
+        <!-- Conteúdo -->
+        <div>
+          <p class="usuario-nome"><%= usuario.nome %></p>
+
+          <p class="usuario-email-label">Usuário:</p>
+          <p class="usuario-email"><%= usuario.usuario %></p>
+
+          <!-- Criado_em -->
+          <p class="usuario-email-label" style="margin-top: 8px;">Criado em:</p>
+          <p class="usuario-email">
+            <%= new Date(usuario.criado_em).toLocaleDateString('pt-BR') %>
+          </p>
+        </div>
+
+        <!-- Ações -->
+        <div class="usuario-actions">
+
+          <!-- Editar -->
+          <form action="/usuarios/<%= usuario.id_usuario %>/editar" method="GET">
+            <button type="submit" class="btn-editar" title="Editar">
+              <img src="/IMG/editar.png" alt="Editar" class="icon-sm">
+            </button>
+          </form>
+
+          <!-- Deletar -->
+          <form action="/usuarios/<%= usuario.id_usuario %>/deletar"
+                method="POST"
+                onsubmit="return confirm('Deseja realmente excluir este usuário?');">
+            <button type="submit" class="btn-deletar" title="Deletar">
+              <img src="/IMG/Lixeira.png" alt="Deletar" class="icon-sm">
+            </button>
+          </form>
+
+        </div>
+
+      </div>
+
+    <% } %>
+  </div>
+
+  <!-- Estado vazio -->
+  <% if (!usuarios || usuarios.length === 0) { %>
+    <div class="estado-vazio">
+      Nenhum usuário cadastrado.
+    </div>
+  <% } %>
+
+  <!-- FAB -->
+  <a href="/usuarios/novo"
+     aria-label="Adicionar usuário"
+     title="Adicionar novo usuário"
+     class="btn-add">
+    Adicionar usuário
+  </a>
+
+</main>
+
+<%- include('../includes/footer.ejs') %>
+
+</body>

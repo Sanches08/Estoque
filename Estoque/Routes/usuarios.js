@@ -1,94 +1,113 @@
-//Importa o módulo do Express
-import express from 'express'; 
+import express from 'express'
+import BD from '../db.js'
 
-//Importa a conexao com o banco de dados
-import BD from '../db.js';
-//Cria um objeto Router 
-const router = express.Router();
+const router = express.Router()
 
-router.get('/', async (req, res) => {
-    try {
-        const result = await BD.query('SELECT id_usuario, login, senha, nome_usuario, ativo FROM usuario');
-        res.render('usuario/lista', {usuario: result.rows});
-    } catch (erro) {
-        console.error("Erro ao listar professores: ", erro);
-        res.render ("professores/lista",{ professores: [],
-            mensagem: "Erro ao listar professores"});
-    }
-});
-
-
-router.get('/novo', (req, res) => {
-    res.render('professores/criar');
-});
-
-
-router.post('/novo', async (req, res) => {
-    try {
-        const { nome_professor, telefone, formacao } = req.body;
-        await BD.query(
-            `INSERT INTO professores (nome_professor, telefone, formacao) VALUES ($1, $2, $3)`,
-            [nome_professor, telefone, formacao]
-        );
-        res.redirect('/professores');
-    } catch (erro) {
-        console.error("Erro ao criar professor: ", erro);
-        res.render('professores/criar', 
-        { mensagem: "Erro ao criar professor" });
-    }
-});
-
-
-//editar
-router.get('/:id/editar', async (req, res) => {
-    try {
-        const {id} = req.params;
-
-console.log(id)
-
+// ==============================
+// LISTAR USUÁRIOS
+// ==============================
+router.get('/', async (_req, res) => {
+    try { 
         const result = await BD.query(
-            'SELECT id_professor, nome_professor, telefone, formacao FROM professores WHERE id_professor = $1',
+            'SELECT id_usuario, nome, usuario, senha,criado_em, ativo FROM usuarios ORDER BY nome'
+        )
+        res.render('usuarios/lista', { usuarios: result.rows })
+    } catch (erro) {
+        console.error('Erro ao listar usuários', erro)
+        res.render('usuarios/lista', { usuarios: [], mensagem: 'Erro ao listar usuários' })
+    }
+})
+
+// ==============================
+// FORM CRIAR USUÁRIO
+// ==============================
+router.get('/novo', (_req, res) => {
+    res.render('usuarios/criar', { mensagem: '' })
+})
+
+// ==============================
+// SALVAR NOVO USUÁRIO
+// ==============================
+router.post('/novo', async (req, res) => {
+    const { nome, usuario, senha } = req.body;
+
+    try {
+        await BD.query(
+            'INSERT INTO usuarios (nome, usuario, senha) VALUES ($1, $2, $3)',
+            [nome, usuario, senha]
+        );
+        return res.redirect('/usuarios');
+    } catch (erro) {
+        console.error('Erro ao criar usuário', erro);
+        res.render('usuarios/criar', { mensagem: 'Erro ao salvar usuário' });
+    }
+});
+
+
+// ==============================
+// FORM EDITAR USUÁRIO
+// ==============================
+router.get('/:id/editar', async (req, res) => {
+    const { id } = req.params
+    let usuario = null
+
+    try {
+        const rUser = await BD.query(
+            'SELECT id_usuario, nome, senha FROM usuarios WHERE id_usuario = $1',
             [id]
-        );
-        res.render("professores/editar",
-            
-        {professor: result.rows[0] });
+        )
+        usuario = rUser.rows[0]
+
+        if (!usuario) return res.redirect('/usuarios')
+
+        res.render('usuarios/editar', { usuario, mensagem: '' })
     } catch (erro) {
-        console.error("Erro ao abrir edição de professor", erro);
-        res.redirect('/professores');
+        console.error('Erro ao carregar usuário', erro)
+        res.render('usuarios/editar', {
+            usuario,
+            mensagem: 'Erro ao carregar dados'
+        })
     }
-});
+})
 
-
-//EDITAR(POST)- grava alterações
+// ==============================
+// SALVAR EDIÇÃO
+// ==============================
 router.post('/:id/editar', async (req, res) => {
+    const { id } = req.params
+    const { nome } = req.body
+
     try {
-        const { id } = req.params;
-        const { nome_professor, telefone, formacao } = req.body;
         await BD.query(
-            `UPDATE professores SET nome_professor = $1, 
-            telefone = $2, formacao = $3 WHERE id_professor = $4`,
-            [nome_professor, telefone, formacao, id]
-        );
-        res.redirect('/professores');
+            'UPDATE usuarios SET nome = $1,WHERE id_usuario = $3',
+            [nome, id]
+        )
+        return res.redirect('/usuarios')
     } catch (erro) {
-        console.error("Erro ao editar professor ", erro);
-        res.render('/professores');
+        console.error('Erro ao atualizar usuário', erro)
+        res.render('usuarios/editar', {
+            usuario: { id_usuario: id, nome },
+            mensagem: 'Erro ao atualizar usuário'
+        })
     }
-});
+})
 
-//DELETAR (POST)
+// ==============================
+// DELETAR
+// ==============================
 router.post('/:id/deletar', async (req, res) => {
-    try {
-        const { id } = req.params;
-        await BD.query(
-            'DELETE FROM professores WHERE id_professor = $1',
-            [id]);
-        res.redirect('/professores');
-    } catch (erro) {
-        console.error("Erro ao deletar professor ", erro);
-        res.redirect('/professores');
-    }   
-});
+    const { id } = req.params
 
-export default router;
+    try {
+        await BD.query(
+            'DELETE FROM usuarios WHERE id_usuario = $1',
+            [id]
+        )
+        return res.redirect('/usuarios')
+    } catch (erro) {
+        console.error('Erro ao excluir usuário', erro)
+        return res.redirect('/usuarios')
+    }
+})
+
+export default router

@@ -1,0 +1,76 @@
+<%- include('../includes/header.ejs', { titulo: 'Editar Usuário' }) %>
+
+<main>
+
+  <div>
+
+    <h2>Editar Usuário</h2>
+
+    <% if (typeof mensagem !== 'undefined' && mensagem) { %>
+      <p><%= mensagem %></p>
+    <% } %>
+
+    <form action="/usuarios/<%= usuario.id_usuario %>/editar" method="POST">
+
+      <!-- ID do Usuário (somente leitura) -->
+      <div>
+        <label for="id_usuario">
+          ID do Usuário
+        </label>
+        <input type="text"
+               id="id_usuario"
+               name="id_usuario"
+               value="<%= usuario.id_usuario %>"
+               readonly
+               class="input" />
+      </div>
+
+      <!-- Nome do Usuário -->
+      <div>
+        <label for="nome">
+          Nome
+        </label>
+        <input type="text"
+               id="nome"
+               name="nome"
+               value="<%= usuario.nome %>"
+               required
+               class="input" />
+      </div>
+
+      <!-- Senha -->
+      <div>
+        <label for="senha">
+          Senha
+        </label>
+        <input type="password"
+               id="senha"
+               name="senha"
+               value="<%= usuario.senha %>"
+               class="input" />
+      </div>
+
+      <!-- Ativo (checkbox) -->
+      <div>
+        <label for="ativo">
+          Ativo?
+        </label>
+        <input type="checkbox"
+               id="ativo"
+               name="ativo"
+               value="true"
+               <%= usuario.ativo ? "checked" : "" %> />
+      </div>
+
+      <!-- Botões -->
+      <div>
+        <a href="/usuarios">Cancelar</a>
+        <button type="submit">Atualizar</button>
+      </div>
+
+    </form>
+
+  </div>
+</main>
+
+<%- include('../includes/footer.ejs') %>
