@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('../includes/header.ejs', { titulo: 'Painel Administrativo' }) %>
+
+ <main class="dashboard"> 
+    <h1>Dashboard</h1>
+
+    <!-- Primeira linha: 4 quadrados -->
+    <div class="linha-dashboard linha-1">
+      <div class="card-dash">Produtos cadastrados</div>
+      <div class="card-dash">Produtos em estoque crítico</div>
+      <div class="card-dash">Usuários ativos</div>
+      <div class="card-dash">Produtos por categoria</div>
+    </div>
+
+    <!-- Segunda linha: 3 retângulos -->
+    <div class="linha-dashboard linha-1">
+      <div class="card-dash">Gráfico de Vendas</div>
+      <div class="card-dash">Pedidos Recentes</div>
+      <div class="card-dash">Mensagens</div>
+    </div>
+  </main>
+
+<%- include('../includes/footer.ejs') %>
+</body>
+</html>

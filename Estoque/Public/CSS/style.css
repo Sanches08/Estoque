@@ -1,0 +1,521 @@
+/* =========================================
+   SISTEMA ESCOLAR - STYLE.CSS (SEM TWIND)
+   ========================================= */
+
+/* === Paleta de cores do tema === */
+:root {
+      --cor-fundo: #d6b5a1;
+      --cor-header: #b88f7b;
+      --cor-texto: #4a2e25;
+      --cor-botao: #8a6a5c;
+      --cor-hover: #9b7c6c;
+      --cor-branca: #fff;
+    }
+
+
+/* === Base === */
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+   body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--cor-fundo);
+      color: var(--cor-texto);
+    }
+
+/*=== Header ===*/
+header {
+      background-color: var(--cor-header);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 30px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+ /* === BOTÃO LOGIN === */
+    .login-btn {
+      background-color: var(--cor-botao);
+      color: var(--cor-branca);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-btn:hover {
+      background-color: var(--cor-hover);
+    }
+
+/* === LOGO === */
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 12px;
+  color: var(--cor-branca);
+  font-size: 1.3rem;
+  font-weight: 600;
+  transition: opacity 0.3s;
+  }
+
+.logo:hover {
+  opacity: 0.9;
+  }
+
+.logo img {
+  width: 80px;
+  height: 60px;
+  object-fit: contain;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  }
+
+  /* === INTRO === */
+.intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    gap: 20px;
+    background-color: #f0e0d8;
+    
+}
+
+.intro-text {
+    max-width: 50%;
+    font-size: large;
+    line-height: 1.6;
+}
+
+.intro h2 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+}
+
+.intro-img {
+    width: 350px;
+    border-radius: 10px;
+}
+
+/* === QUEM SOMOS === */
+
+.quem-somos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  background: #fffaf6;
+  padding: 40PX 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.quem-titulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 250px;
+}
+
+.quem-titulo h2 {
+  font-size: 2.8rem;
+  color: #6c3d26;
+}
+
+.quem-titulo i {
+  font-size: 2.2rem;
+  color: #a86448;
+}
+
+.quem-somos p {
+  flex: 1;
+  color: #4a2c1a;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* === SEÇÃO VALORES (5 QUADRADOS) === */
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;    
+  gap: 20px;
+  padding: 20px;
+  max-width: 1000px;
+  width: 90%;
+  margin: 0 auto;     
+  font-size: 0.7rem;  
+  margin-top: 50px;
+}
+.card {
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  flex: 1 1 45%;
+  min-width: 300px;
+  position: relative;
+}
+.card img{
+  position: absolute;
+  z-index: 10;
+}
+#shampoo {
+  height: 260px;
+  right: -70px;
+  bottom: 0;
+}
+
+
+.qualidade {
+  background: #f4d9cb;
+  order: 1;
+  padding-right: 120px;
+  padding-bottom: 60px;
+}
+
+.sustentabilidade {
+  background: #e6c3b7;
+  order: 2;
+}
+
+.inovacao {
+  background: #f6bfa8;
+  order: 3;
+  flex: 1 1 100%;
+}
+
+.diversidade {
+  background: #d7b8aa;
+  order: 4;
+  width: 40%;
+}
+
+.valorizacao {
+  background: #e3bfae;
+  order: 5;
+}
+
+.card h2 {
+  font-size: 1.2rem;
+  color: #4a2b21;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #4a2b21;
+  line-height: 1.5;
+  font-size: 0.8rem;
+}
+
+
+/* === SEÇÃO LOGIN === */
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--cor-fundo);
+}
+
+.login-form {
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: center;
+  position: relative;
+}
+
+
+.card-login {
+  gap: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column; 
+}
+
+.login-form h2 {
+  color: #4a2b21;
+  margin-bottom: 10px;
+}
+
+.login-form input,
+.login-form button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.login-form button {
+  background-color: #B7907F;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.login-form button:hover {
+  background-color: #a07e6f;
+}
+
+.card-img {
+  position: absolute;
+  top: -30px;
+  left: 20px;
+  transform: translateX(-50%);
+  width: 100px;
+  height:100px;
+}
+
+
+/* === HEADER === */
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #b68f7a;
+  border-top: 3px solid #3e3029;
+  border-bottom: 3px solid #3e3029;
+  padding: 10px 40px;
+}
+
+.menu a {
+  background-color: #d6b5a1;
+  border: 1px solid #3e3029;
+  border-radius: 5px;
+  padding: 10px 20px;
+  color: #2b1d15;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+/* Efeito ao passar o mouse */
+.menu a:hover {
+  background-color: #8e6c5b;
+  color: #fff;
+}
+
+/* Usuário à direita */
+.user {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #e8ddd6;
+  border-radius: 6px;
+  padding: 5px 5px;
+  border: 1px solid #3e3029;
+}
+
+.user:hover {
+  background-color: #c1c1c1;
+  color: #fff;
+}
+
+.logo_header img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Menu central */
+.menu {
+  display: flex;
+  gap: 20px;
+}
+
+/* === FOOTER === */
+
+footer {
+  background-color: #b58979; /* marrom rosado */
+  color: #2c2c2c;
+  padding: 10px 70px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: white;
+  object-fit: cover;
+}
+
+.brand-name {
+  font-weight: 600;
+  color: #22313f;
+  font-size: 1rem;
+}
+
+.footer-right h3 {
+  color: #22313f;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.footer-right p {
+  margin: 5px 0;
+  color: #22313f;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-right i {
+  color: #000;
+  font-size: 1rem;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #2c2c2c;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 10px;
+}
+
+/*CAROSSEL*/
+
+.carrossel {
+      position: relative; 
+      width: 80%; 
+      max-width: 800px; 
+      margin: 50px auto; 
+      overflow: hidden; 
+      border-radius: 12px; 
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2); 
+    }
+    .slides {
+      display: flex; 
+      transition: transform 0.5s ease-in-out; 
+      width: 100%;
+    }
+    .slide {
+      min-width: 100%;
+      height: 300px;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    .um { background-image: url(https://www.shutterstock.com/image-photo/aesthetic-arrangement-cosmetic-bottles-on-600nw-2593413797.jpg); background-size: cover; } 
+    .dois {  background-image: url(https://i.pinimg.com/1200x/1a/c8/db/1ac8db6a8514660ee6456342bda85b36.jpg); background-size: cover;} 
+    .tres { background-image: url(https://i.pinimg.com/736x/0f/59/1d/0f591d6ce14e8fb2da0df221fceed3a5.jpg); background-size: cover;
+    background-position: center top;  } 
+    .btn {
+      position: absolute; 
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.2);
+      border: none;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .btn:hover {
+      background: white;
+    }
+    .btn-anterior { left: 10px; }
+    .btn-proximo { right: 10px; }
+    .seta {
+      width: 0; 
+      height: 0; 
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent; 
+    }
+    .seta.esquerda {
+      border-right: 10px solid rgba(0, 0, 0, 0.2); 
+    }
+    .seta.direita {
+      border-left: 10px solid rgba(0, 0, 0, 0.2); 
+    }
+
+    /*===DASHBORAD INICIAL===*/
+
+    .dashboard {
+  padding-bottom: 0%;
+  margin-bottom: 0%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  gap: 40px;
+}
+
+.dashboard h1 {
+  font-size: 2.2rem;
+  color: var(--cor-fonte);
+  text-align: center;
+}
+
+.linha-dashboard {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.card-dash {
+  background: #c3a593;
+  color: white;
+  font-weight: bold;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+.linha-1 .card-dash {
+  width: 260px;
+  height: 140px;
+}
+
+.card-horizontal {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.card-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

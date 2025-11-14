@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloom Beauty - Login</title>
+
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+
+  <div class="card-login">
+
+    <section class="login">
+ <form action="/auth/login" method="POST" class="login-form">
+
+        <h2>Login</h2>
+
+      <div>
+        <label for="usuario">
+          User
+        </label>
+        <input type="text" id="usuario" name="usuario" required class="input" />
+      </div>
+
+      <!-- Senha -->
+      <div>
+        <label for="senha"
+               style="text-align:left;">
+          Senha
+        </label>
+        <input type="password" id="senha" name="senha" required class="input" />
+      </div>
+
+      <!-- Mensagem de erro -->
+      <% if (typeof mensagem !== 'undefined' && mensagem) { %>
+        <p class="text-erro-600 text-center text-sm"><%= mensagem %></p>
+      <% } %>
+
+      <!-- Botão -->
+        <button type="submit">Entrar</button>
+        <img src="/IMG/Blossom_flor.png" alt="Ramo de cerejeira" class="card-img">
+    </form>
+    </section>
+  </div>
+
+</body>
+</html>

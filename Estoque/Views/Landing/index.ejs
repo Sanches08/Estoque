@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bloom Beauty</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    
+  </style>
+  
+</head>
+
+<body class="bg-neutra-50">
+
+  <!-- Cabeçalho -->
+  <header>
+    <a href="#" class="logo">
+      <img src="/IMG/cropped_circle_image.png" alt="Logo Bloom Beauty">
+      <p>Bem vindo a Bloom Beauty!</p>
+    </a>
+    <a href="/auth/login" class="login-btn">Login</a>
+  </header>
+
+  <!-- Conteúdo principal -->
+<main>
+        <!-- Seção: Onde a beleza floresce -->
+        <section class="intro">
+            <div class="intro-text">
+                <h2>Onde a beleza floresce!</h2>
+                <p>
+                    Acreditamos que a verdadeira beleza tem reflexo do bem-estar e da autoconfiança.
+                    Com produtos de alta qualidade e inspiração natural, proporcionamos uma experiência
+                    que eleva o seu brilho e a sua paz, nessa atmosfera de elegância, brilho e confiança
+                    que existe em você.
+                </p>
+            </div>
+            
+            <div class="carrossel">
+              <div class="slides" id="slides">
+                <div class="slide um"></div> 
+                <div class="slide dois"></div> 
+                <div class="slide tres"></div> 
+              </div>
+              <button class="btn btn-anterior" id="anterior">
+                <div class="seta esquerda"></div> 
+              </button>
+              <button class="btn btn-proximo" id="proximo">
+                <div class="seta direita"></div>
+              </button>
+            </div>
+
+        </section>
+
+        <!-- Seção: Quem somos nós -->
+         
+    <section class="quem-somos">
+      <div class="quem-titulo">
+        <i class="bi bi-flower1"></i>
+        <h2>Quem somos nós</h2>
+      </div>
+      <p>
+        A Bloom Beauty é uma empresa especializada na  comercialização de produtos de beleza,
+        dedicada a proporcionar bem-estar, autoestima e cuidado pessoal. Atuando no ramo de 
+        cosméticos e cuidados com a pele, a empresa oferece uma ampla linha de produtos, incluind
+        cremes hidratantes, loções corporais e condicionadores, além de produtos de maquiagem e
+        cuidados faciais. O compromisso da empresa é entregar produtos que além de eficácia,
+        segurança e beleza, tornam o cuidado pessoal um momento prazeroso e transformador.
+      </p>
+    </section> 
+
+<!--Valores e missão-->
+<!-- <section class="cards-container">
+  <div class="card qualidade">
+    <h2>Qualidade e Segurança</h2>
+    <p>A empresa preza por oferecer produtos desenvolvidos com rigor e cuidado, garantindo eficácia e confiança em cada item.</p>
+    <img id="shampoo" src="https://res.cloudinary.com/beleza-na-web/image/upload/w_1500,f_auto,fl_progressive,q_auto:eco,w_800/v1/imagens/product/63646/d18a5eb5-3366-4ee9-94b5-9940d87f6dfb-amend-millenar-oleos-marroquinos-shampoo-300ml.png">
+  </div>
+
+  <div class="card sustentabilidade">
+    <h2>Sustentabilidade</h2>
+    <p>O respeito ao meio ambiente e o uso consciente de recursos estão presentes em toda a cadeia produtiva, reforçando a responsabilidade social da empresa.</p>
+  </div>
+
+  <div class="card inovacao">
+    <h2>Inovação</h2>
+    <p>A busca constante por novas tecnologias, fórmulas e tendências orienta o crescimento e a diferenciação da marca no mercado.</p>
+  </div>
+
+  <div class="card diversidade">
+    <h2>Diversidade e Inclusão</h2>
+    <p>Os produtos são pensados para atender às diferentes necessidades de pele, cabelo e estilos de vida, valorizando a beleza em todas as suas formas.</p>
+  </div>
+
+  <div class="card valorizacao">
+    <h2>Valorização humana</h2>
+    <p>A empresa acredita que pessoas são a base de qualquer conquista. Por isso, cultiva relações éticas, transparentes e respeitosas com clientes, colaboradores e parceiros...</p>
+  </div>
+</section> -->
+
+<section class="cards-container">
+  <div class="card-horizontal">
+    <div class="card-vertical">
+      <div class="card qualidade">
+        <h2>Qualidade e Segurança</h2>
+        <p>A empresa preza por oferecer produtos desenvolvidos com rigor e cuidado, garantindo eficácia e confiança em cada item.</p>
+        <img id="shampoo" src="https://res.cloudinary.com/beleza-na-web/image/upload/w_1500,f_auto,fl_progressive,q_auto:eco,w_800/v1/imagens/product/63646/d18a5eb5-3366-4ee9-94b5-9940d87f6dfb-amend-millenar-oleos-marroquinos-shampoo-300ml.png">
+      </div>
+      <div class="card inovacao">
+        <h2>Inovação</h2>
+        <p>A busca constante por novas tecnologias, fórmulas e tendências orienta o crescimento e a diferenciação da marca no mercado.</p>
+      </div>
+    </div>
+    <div class="card sustentabilidade">
+      <h2>Sustentabilidade</h2>
+      <p>O respeito ao meio ambiente e o uso consciente de recursos estão presentes em toda a cadeia produtiva, reforçando a responsabilidade social da empresa.</p>
+    </div>
+  </div>
+
+
+  <div class="card-horizontal">
+    <div class="card diversidade">
+      <h2>Diversidade e Inclusão</h2>
+      <p>Os produtos são pensados para atender às diferentes necessidades de pele, cabelo e estilos de vida, valorizando a beleza em todas as suas formas.</p>
+    </div>
+    <div class="card valorizacao">
+      <h2>Valorização humana</h2>
+      <p>A empresa acredita que pessoas são a base de qualquer conquista. Por isso, cultiva relações éticas, transparentes e respeitosas com clientes, colaboradores e parceiros...</p>
+    </div>
+  </div>  
+</section>
+
+</main>
+  <!-- Rodapé -->
+  <%- include('../includes/footer.ejs') %>
+
+  <script>
+    const slides = document.getElementById('slides');
+    const anterior = document.getElementById('anterior');
+    const proximo = document.getElementById('proximo');
+    const total = document.querySelectorAll('.slide').length;
+    let atual = 0;
+    function atualizar() {
+      slides.style.transform = `translateX(-${atual * 100}%)`;
+    }
+    proximo.addEventListener('click', () => {
+      atual = (atual + 1) % total; 
+      atualizar();
+    });
+    anterior.addEventListener('click', () => {
+      atual = (atual - 1 + total) % total;
+      atualizar();
+    });
+    setInterval(() => {
+      atual = (atual + 1) % total;
+      atualizar(); 
+    }, 2000);
+  </script>
+
+</body>
+</html>  
