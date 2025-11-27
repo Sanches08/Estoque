@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url';
 import adminRotas from'./Routes/admin.js';
 import loginRotas from './Routes/login.js';
 import usuariosRotas from './Routes/usuarios.js'
+import movimentacoesRouter from './Routes/movimentacoes.js'
 
 const __fillname=fileURLToPath(import.meta.url);
 const __dirname=path.dirname(__fillname);
@@ -48,6 +49,7 @@ const verificarAutenticacao = (req, res, next) => {
 app.use('/auth', loginRotas);
 app.use('/admin', verificarAutenticacao, adminRotas);
 app.use('/usuarios', verificarAutenticacao, usuariosRotas);
+app.use('/movimentacoes', movimentacoesRouter) 
 
 
 

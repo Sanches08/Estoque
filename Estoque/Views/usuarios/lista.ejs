@@ -35,14 +35,14 @@
         <div class="usuario-actions">
 
           <!-- Editar -->
-          <form action="/usuarios/<%= usuario.id_usuario %>/editar" method="GET">
+          <form action="/usuarios/editar/<%= usuario.id_usuario %>" method="GET">
             <button type="submit" class="btn-editar" title="Editar">
               <img src="/IMG/editar.png" alt="Editar" class="icon-sm">
             </button>
           </form>
 
           <!-- Deletar -->
-          <form action="/usuarios/<%= usuario.id_usuario %>/deletar"
+          <form action="/usuarios/deletar/<%= usuario.id_usuario %>"
                 method="POST"
                 onsubmit="return confirm('Deseja realmente excluir este usuário?');">
             <button type="submit" class="btn-deletar" title="Deletar">

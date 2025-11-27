@@ -13,7 +13,7 @@ router.post("/login", async (req, res) => {
         console.log(req.body)
 
         const buscaDados = await BD.query(
-            "SELECT * FROM usuarios WHERE usuario = $1 AND senha = $2 AND ativo = true",
+            "SELECT * FROM usuario WHERE usuario = $1 AND senha = $2 AND ativo = true",
             [usuario, senha]
         );
 

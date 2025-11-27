@@ -1,63 +1,72 @@
-<%- include('../includes/header.ejs', { titulo: 'Novo Usuário' }) %>
+<%- include('../includes/header.ejs', { titulo: 'Adicionar Usuário' }) %>
 
-<main
->
+<main class="criacao-usuario-main">
 
-  <div class="form-card">
+<div class="criacao-usuario-container">
 
-    <h2>Cadastrar Novo Usuário</h2>
+<h2 class="criacao-usuario-titulo">Adicionar Usuário</h2>
 
-    <% if (typeof mensagem !== 'undefined' && mensagem) { %>
-      <p><%= mensagem %></p>
-    <% } %>
+<% if (typeof mensagem !== 'undefined' && mensagem) { %>
+    <p class="criacao-usuario-mensagem"><%= mensagem %></p>
+<% } %>
 
-    <form action="/usuarios/novo" method="POST" class="flex flex-col gap-4">
+<form action="/usuarios/novo" method="POST" class="criacao-usuario-form">
 
-      <!-- Nome do Usuário -->
-      <div>
-        <label for="nome_usuario">
-          Nome do Usuário
+    <div class="criacao-usuario-campo">
+        <label for="nome" class="criacao-usuario-label">
+            Nome
         </label>
         <input type="text"
-               id="nome_usuario"
-               name="nome_usuario"
-               required
-               class="input" />
-      </div>
+            id="nome"
+            name="nome"
+            value="<%= typeof usuario !== 'undefined' ? usuario.nome : '' %>"
+            required
+            class="criacao-usuario-input" />
+    </div>
 
-      <!-- Email -->
-      <div>
-        <label for="email" >
-          E-mail
+    <div class="criacao-usuario-campo">
+        <label for="usuario" class="criacao-usuario-label">
+            Usuário (Login)
         </label>
-        <input type="email"
-               id="email"
-               name="email"
-               required
-               class="input" />
-      </div>
+        <input type="text"
+            id="usuario"
+            name="usuario"
+            value="<%= typeof usuario !== 'undefined' ? usuario.usuario : '' %>"
+            required
+            class="criacao-usuario-input" />
+    </div>
 
-      <!-- Senha -->
-      <div>
-        <label for="senha">
-          Senha
+    <div class="criacao-usuario-campo">
+        <label for="senha" class="criacao-usuario-label">
+            Senha
         </label>
         <input type="password"
-               id="senha"
-               name="senha"
-               required
-               class="input" />
-      </div>
+            id="senha"
+            name="senha"
+            required
+            class="criacao-usuario-input" />
+    </div>
 
-      <!-- Botões -->
-      <div class="form-actions">
-        <a href="/usuarios">Cancelar</a>
-        <button type="submit">Salvar</button>
-      </div>
+    <div class="criacao-usuario-campo criacao-usuario-checkbox-group">
+        <input type="checkbox"
+            id="ativo" 
+            name="ativo"
+            value="true"
+            <%= (typeof usuario === 'undefined' || usuario.ativo !== false) ? "checked" : "" %> 
+            class="criacao-usuario-checkbox" />
+        <label for="ativo" class="criacao-usuario-label criacao-usuario-label-inline">
+            Ativo?
+        </label>
+    </div>
 
-    </form>
+    <div class="criacao-usuario-botoes">
+        <a href="/usuarios" class="criacao-usuario-btn criacao-usuario-btn-cancelar">Cancelar</a>
+        <button type="submit" class="criacao-usuario-btn criacao-usuario-btn-submit">Criar</button>
+    </div>
 
-  </div>
+</form>
+
+</div>
 </main>
 
 <%- include('../includes/footer.ejs') %>

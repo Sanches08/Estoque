@@ -9,7 +9,7 @@ const router = express.Router()
 router.get('/', async (_req, res) => {
     try { 
         const result = await BD.query(
-            'SELECT id_usuario, nome, usuario, senha,criado_em, ativo FROM usuarios ORDER BY nome'
+            'SELECT id_usuario, nome, usuario, senha,criado_em, ativo FROM usuario ORDER BY nome'
         )
         res.render('usuarios/lista', { usuarios: result.rows })
     } catch (erro) {
@@ -29,17 +29,29 @@ router.get('/novo', (_req, res) => {
 // SALVAR NOVO USUÁRIO
 // ==============================
 router.post('/novo', async (req, res) => {
-    const { nome, usuario, senha } = req.body;
+    // CORRIGIDO: Agora extrai 'nome', 'usuario', 'senha' e 'ativo'
+    const { nome, usuario, senha, ativo } = req.body; 
+
+    // Converte o checkbox 'ativo' para booleano. Se não for enviado, é false.
+    const isAtivo = ativo === 'true' || ativo === 'on' ? true : false;
+    
+    // Objeto para re-renderizar o formulário em caso de erro
+    const novoUsuario = { nome, usuario, ativo: isAtivo };
 
     try {
         await BD.query(
-            'INSERT INTO usuarios (nome, usuario, senha) VALUES ($1, $2, $3)',
-            [nome, usuario, senha]
+            // SQL: Agora insere 'ativo' também
+            'INSERT INTO usuario (nome, usuario, senha, ativo) VALUES ($1, $2, $3, $4)',
+            [nome, usuario, senha, isAtivo]
         );
         return res.redirect('/usuarios');
     } catch (erro) {
         console.error('Erro ao criar usuário', erro);
-        res.render('usuarios/criar', { mensagem: 'Erro ao salvar usuário' });
+        // Passa os dados submetidos para o EJS
+        res.render('usuarios/criar', { 
+            mensagem: 'Erro ao salvar usuário. Verifique os dados.',
+            usuario: novoUsuario 
+        });
     }
 });
 
@@ -47,13 +59,13 @@ router.post('/novo', async (req, res) => {
 // ==============================
 // FORM EDITAR USUÁRIO
 // ==============================
-router.get('/:id/editar', async (req, res) => {
+router.get('/editar/:id', async (req, res) => {
     const { id } = req.params
     let usuario = null
 
     try {
         const rUser = await BD.query(
-            'SELECT id_usuario, nome, senha FROM usuarios WHERE id_usuario = $1',
+            'SELECT id_usuario, nome, senha, ativo, criado_em FROM usuario WHERE id_usuario = $1',
             [id]
         )
         usuario = rUser.rows[0]
@@ -73,21 +85,53 @@ router.get('/:id/editar', async (req, res) => {
 // ==============================
 // SALVAR EDIÇÃO
 // ==============================
-router.post('/:id/editar', async (req, res) => {
+
+router.post('/editar/:id', async (req, res) => {
     const { id } = req.params
-    const { nome } = req.body
+    const { nome, usuario, senha, ativo } = req.body
+
+    // Converte checkbox 'ativo' para booleano (true se marcado, false se não)
+    const isAtivo = ativo === 'true' || ativo === 'on' ? true : false
+
+    // Inicializa Query com campos obrigatórios
+    let query = 'UPDATE usuario SET nome = $1, usuario = $2, ativo = $3'
+    // id sempre deve ser o ÚLTIMO parâmetro.
+    const params = [nome, usuario, isAtivo, id] 
+
+    // 1. Lógica para Senha (Se for fornecida): 
+    // OBS: Esta lógica salva a senha em texto puro. Recomenda-se usar hash (ex: bcrypt).
+    if (senha && senha.length > 0) {
+        // Insere a senha no 4º slot dos parâmetros (antes do ID)
+        params.splice(3, 0, senha); 
+        // Adiciona a coluna senha à Query
+        query += ', senha = $4'; 
+    }
+
+    // Finaliza a Query: A posição do ID ($N) na condição WHERE é sempre o tamanho atual do array params
+    query += ' WHERE id_usuario = $' + params.length 
+
+    // Cria objeto temporário para re-renderização em caso de erro
+    let usuarioAtual = { id_usuario: id, nome, usuario, ativo: isAtivo } 
 
     try {
-        await BD.query(
-            'UPDATE usuarios SET nome = $1,WHERE id_usuario = $3',
-            [nome, id]
-        )
+        await BD.query(query, params)
         return res.redirect('/usuarios')
     } catch (erro) {
         console.error('Erro ao atualizar usuário', erro)
+        
+        // Em caso de erro, tenta buscar 'criado_em' do DB para renderizar a página corretamente
+        try {
+            const rUser = await BD.query('SELECT criado_em FROM usuario WHERE id_usuario = $1', [id]);
+            if (rUser.rows.length > 0) {
+                usuarioAtual.criado_em = rUser.rows[0].criado_em;
+            }
+        } catch (e) {
+            // Ignora erro de busca secundária
+        }
+
         res.render('usuarios/editar', {
-            usuario: { id_usuario: id, nome },
-            mensagem: 'Erro ao atualizar usuário'
+            usuario: usuarioAtual,
+            mensagem: 'Erro ao atualizar usuário' 
         })
     }
 })
@@ -95,12 +139,12 @@ router.post('/:id/editar', async (req, res) => {
 // ==============================
 // DELETAR
 // ==============================
-router.post('/:id/deletar', async (req, res) => {
+router.post('/deletar/:id', async (req, res) => {
     const { id } = req.params
 
     try {
         await BD.query(
-            'DELETE FROM usuarios WHERE id_usuario = $1',
+            'DELETE FROM usuario WHERE id_usuario = $1',
             [id]
         )
         return res.redirect('/usuarios')

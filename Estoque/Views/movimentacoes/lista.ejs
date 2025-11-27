@@ -1,0 +1,64 @@
+<%- include('../includes/header.ejs', { titulo: 'Movimentações de Estoque' }) %>
+
+<main class="movimentacoes-container">
+
+    <h1 class="titulo-pagina">Histórico de Movimentações</h1>
+    
+    <% if (typeof mensagem !== 'undefined' && mensagem) { %>
+        <div class="alerta-mensagem">
+            <%= mensagem %>
+        </div>
+    <% } %>
+
+    <div class="movimentacoes-grid">
+        <% for (let mov of movimentacoes) { %>
+
+            <div class="movimento-card 
+                <%= mov.tipo_movimento === 'ENTRADA' ? 'card-entrada' : 'card-saida' %>"
+                title="Movimentação ID: <%= mov.id_movimento %>">
+
+                <p class="movimento-tipo <%= mov.tipo_movimento === 'ENTRADA' ? 'tipo-entrada' : 'tipo-saida' %>">
+                    <%= mov.tipo_movimento %>
+                </p>
+
+                <div class="movimento-conteudo">
+                    
+                    <p class="movimento-produto"><%= mov.nome_produto %></p>
+                    
+                    <p class="movimento-detalhe-label">Quantidade:</p>
+                    <p class="movimento-quantidade"><%= mov.quant_movimentada %></p>
+
+                    <p class="movimento-detalhe-label">Realizada por:</p>
+                    <p class="movimento-usuario"><%= mov.nome_usuario %></p>
+
+                    <p class="movimento-detalhe-label">Data/Hora:</p>
+                    <p class="movimento-data">
+                        <% 
+                            // Formata a data (dat) para o formato local
+                            const dataFormatada = new Date(mov.dat).toLocaleString('pt-BR', {
+                                dateStyle: 'short', 
+                                timeStyle: 'short'
+                            });
+                        %>
+                        <%= dataFormatada %>
+                    </p>
+
+                    <% if (mov.descricao) { %>
+                        <p class="movimento-detalhe-label">Descrição:</p>
+                        <p class="movimento-descricao"><%= mov.descricao %></p>
+                    <% } %>
+                </div>
+            </div>
+
+        <% } %>
+    </div>
+
+    <% if (!movimentacoes || movimentacoes.length === 0) { %>
+        <div class="estado-vazio">
+            Nenhuma movimentação de estoque encontrada.
+        </div>
+    <% } %>
+
+    </main>
+
+<%- include('../includes/footer.ejs') %>

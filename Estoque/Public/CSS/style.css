@@ -173,6 +173,30 @@ header {
   right: -70px;
   bottom: 0;
 }
+#blush {
+  height: 130px;
+  bottom: 0;
+  left: 5px;
+}
+
+#perfume {
+  height: 250px;
+  left: 120px;
+  bottom: 10;
+}
+
+#escova {
+  height: 180px;
+  right: 380px;
+  bottom: 0;
+}
+
+#sabonete {
+  height: 200px;
+  right: 280px;
+  bottom: -20px;
+
+}
 
 
 .qualidade {
@@ -191,17 +215,22 @@ header {
   background: #f6bfa8;
   order: 3;
   flex: 1 1 100%;
+  padding-left: 140px;
 }
 
 .diversidade {
   background: #d7b8aa;
   order: 4;
   width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .valorizacao {
   background: #e3bfae;
   order: 5;
+  padding-left: 180px;
 }
 
 .card h2 {
@@ -343,7 +372,6 @@ header {
 
 footer {
   background-color: #b58979; /* marrom rosado */
-  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -641,3 +669,311 @@ footer {
     background: #a77f69;
 }
 
+/* ======== EDITAR USUÁRIOS ======== */
+/* ------------------------------------------- */
+/* --- Layout e Container Principal (Escopo) --- */
+/* ------------------------------------------- */
+
+.edicao-usuario-main {
+    /* Centraliza o conteúdo (Flexbox para layout) */
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.edicao-usuario-container {
+    /* Caixa principal do formulário */
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.edicao-usuario-titulo {
+    /* Estilo do Título H2 */
+    color: var(--cor-texto);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.8em;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.edicao-usuario-mensagem {
+    /* Estilo para mensagens de sucesso/erro */
+    background-color: #d4edda;
+    color: var(--cor-fundo);
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* ------------------------------------------- */
+/* --- Campos de Formulário --- */
+/* ------------------------------------------- */
+
+.edicao-usuario-campo {
+    /* Container de cada campo (div) */
+    margin-bottom: 20px;
+}
+
+.edicao-usuario-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.95em;
+    color: #555;
+}
+
+.edicao-usuario-input {
+    /* Estilo dos Inputs de Texto e Senha */
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box; 
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.edicao-usuario-input:focus {
+    border-color: var(--cor-botao);
+    box-shadow: 0 0 0 3px rgba(132, 111, 61, 0.25);
+    outline: none;
+}
+
+.edicao-usuario-input-readonly {
+    /* Input ID do Usuário (Somente leitura) */
+    background-color: #eee;
+    color: #777;
+    cursor: not-allowed;
+}
+
+/* ------------------------------------------- */
+/* --- Checkbox (Ativo) --- */
+/* ------------------------------------------- */
+
+.edicao-usuario-checkbox-group {
+    /* Alinhamento do label e do checkbox */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.edicao-usuario-label-inline {
+    /* Remove margem inferior da label no grupo de checkbox */
+    margin-bottom: 0;
+}
+
+.edicao-usuario-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--cor-texto); /* Cor de destaque (Verde) */
+}
+
+/* ------------------------------------------- */
+/* --- Botões de Ação --- */
+/* ------------------------------------------- */
+
+.edicao-usuario-botoes {
+    /* Container dos botões */
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end; /* Alinha à direita */
+    gap: 15px;
+}
+
+.edicao-usuario-btn {
+    /* Estilo base para botões e links */
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, opacity 0.3s;
+    font-size: 1em;
+    border: 1px solid transparent; /* Para garantir o mesmo tamanho no hover */
+}
+
+.edicao-usuario-btn-submit {
+    /* Botão Atualizar (Principal) */
+    background-color: var(--cor-botao);
+    color: #fff;
+    border-color: var(--cor-hover);
+}
+
+.edicao-usuario-btn-submit:hover {
+    background-color: var(--cor-header);
+}
+
+.edicao-usuario-btn-cancelar {
+    /* Link Cancelar (Secundário) */
+    background-color: #f8f9fa;
+    color: #333;
+    border-color: #ccc;
+    display: flex; /* Para centralizar o texto do link */
+    align-items: center;
+    justify-content: center;
+}
+
+.edicao-usuario-btn-cancelar:hover {
+    background-color: var(--cor-branca);
+}
+
+/* ======== CRIAR USUÁRIOS (Estilo Unificado) ======== */
+/* ------------------------------------------- */
+/* --- Layout e Container Principal (Escopo) --- */
+/* ------------------------------------------- */
+
+.criacao-usuario-main {
+    /* Centraliza o conteúdo (Flexbox para layout) */
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.criacao-usuario-container {
+    /* Caixa principal do formulário */
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.criacao-usuario-titulo {
+    /* Estilo do Título H2 */
+    color: var(--cor-texto);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.8em;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.criacao-usuario-mensagem {
+    /* Estilo para mensagens de sucesso/erro */
+    background-color: #d4edda;
+    color: var(--cor-fundo);
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* ------------------------------------------- */
+/* --- Campos de Formulário --- */
+/* ------------------------------------------- */
+
+.criacao-usuario-campo {
+    /* Container de cada campo (div) */
+    margin-bottom: 20px;
+}
+
+.criacao-usuario-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.95em;
+    color: #555;
+}
+
+.criacao-usuario-input {
+    /* Estilo dos Inputs de Texto e Senha */
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box; 
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.criacao-usuario-input:focus {
+    border-color: var(--cor-botao);
+    box-shadow: 0 0 0 3px rgba(132, 111, 61, 0.25);
+    outline: none;
+}
+
+/* ------------------------------------------- */
+/* --- Checkbox (Ativo) --- */
+/* ------------------------------------------- */
+
+.criacao-usuario-checkbox-group {
+    /* Alinhamento do label e do checkbox */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.criacao-usuario-label-inline {
+    /* Remove margem inferior da label no grupo de checkbox */
+    margin-bottom: 0;
+}
+
+.criacao-usuario-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--cor-texto); /* Cor de destaque */
+}
+
+/* ------------------------------------------- */
+/* --- Botões de Ação --- */
+/* ------------------------------------------- */
+
+.criacao-usuario-botoes {
+    /* Container dos botões */
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end; /* Alinha à direita */
+    gap: 15px;
+}
+
+.criacao-usuario-btn {
+    /* Estilo base para botões e links */
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, opacity 0.3s;
+    font-size: 1em;
+    border: 1px solid transparent; 
+}
+
+.criacao-usuario-btn-submit {
+    /* Botão Criar (Principal) */
+    background-color: var(--cor-botao);
+    color: #fff;
+    border-color: var(--cor-hover);
+}
+
+.criacao-usuario-btn-submit:hover {
+    background-color: var(--cor-header);
+}
+
+.criacao-usuario-btn-cancelar {
+    /* Link Cancelar (Secundário) */
+    background-color: #f8f9fa;
+    color: #333;
+    border-color: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.criacao-usuario-btn-cancelar:hover {
+    background-color: var(--cor-branca);
+}

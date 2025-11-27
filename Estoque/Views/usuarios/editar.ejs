@@ -1,76 +1,96 @@
 <%- include('../includes/header.ejs', { titulo: 'Editar Usuário' }) %>
 
-<main>
+<main class="edicao-usuario-main">
 
-  <div>
+<div class="edicao-usuario-container">
 
-    <h2>Editar Usuário</h2>
+<h2 class="edicao-usuario-titulo">Editar Usuário</h2>
 
-    <% if (typeof mensagem !== 'undefined' && mensagem) { %>
-      <p><%= mensagem %></p>
-    <% } %>
+<% if (typeof mensagem !== 'undefined' && mensagem) { %>
+    <p class="edicao-usuario-mensagem"><%= mensagem %></p>
+<% } %>
 
-    <form action="/usuarios/<%= usuario.id_usuario %>/editar" method="POST">
+<form action="/usuarios/editar/<%= usuario.id_usuario %>" method="POST" class="edicao-usuario-form">
 
-      <!-- ID do Usuário (somente leitura) -->
-      <div>
-        <label for="id_usuario">
-          ID do Usuário
+    <div class="edicao-usuario-campo">
+        <label for="id_usuario" class="edicao-usuario-label">
+            ID do Usuário
         </label>
         <input type="text"
-               id="id_usuario"
-               name="id_usuario"
-               value="<%= usuario.id_usuario %>"
-               readonly
-               class="input" />
-      </div>
+            id="id_usuario"
+            name="id_usuario"
+            value="<%= usuario.id_usuario %>"
+            readonly
+            class="edicao-usuario-input edicao-usuario-input-readonly" />
+    </div>
 
-      <!-- Nome do Usuário -->
-      <div>
-        <label for="nome">
-          Nome
+    <div class="edicao-usuario-campo">
+        <label for="criado_em" class="edicao-usuario-label">
+            Data de Criação
         </label>
         <input type="text"
-               id="nome"
-               name="nome"
-               value="<%= usuario.nome %>"
-               required
-               class="input" />
-      </div>
+            id="criado_em"
+            name="criado_em"
+            value="<%= usuario.criado_em ? new Date(usuario.criado_em).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' }) : 'Não informado' %>"
+            readonly
+            class="edicao-usuario-input edicao-usuario-input-readonly" />
+    </div>
 
-      <!-- Senha -->
-      <div>
-        <label for="senha">
-          Senha
+    <div class="edicao-usuario-campo">
+        <label for="nome" class="edicao-usuario-label">
+            Nome
+        </label>
+        <input type="text"
+            id="nome"
+            name="nome"
+            value="<%= usuario.nome %>"
+            required
+            class="edicao-usuario-input" />
+    </div>
+
+    <div class="edicao-usuario-campo">
+        <label for="usuario" class="edicao-usuario-label">
+            Usuário (Login)
+        </label>
+        <input type="text"
+            id="usuario"
+            name="usuario"
+            value="<%= usuario.usuario %>"
+            required
+            class="edicao-usuario-input" />
+    </div>
+
+    <div class="edicao-usuario-campo">
+        <label for="senha" class="edicao-usuario-label">
+            Nova Senha (Deixe em branco para não alterar)
         </label>
         <input type="password"
-               id="senha"
-               name="senha"
-               value="<%= usuario.senha %>"
-               class="input" />
-      </div>
+            id="senha"
+            name="senha"
+            value="" 
+            class="edicao-usuario-input" />
+    </div>
 
-      <!-- Ativo (checkbox) -->
-      <div>
-        <label for="ativo">
-          Ativo?
+    <div class="edicao-usuario-campo edicao-usuario-checkbox-group">
+        <label for="ativo" class="edicao-usuario-label edicao-usuario-label-inline">
+            Ativo?
         </label>
         <input type="checkbox"
-               id="ativo"
-               name="ativo"
-               value="true"
-               <%= usuario.ativo ? "checked" : "" %> />
-      </div>
+            id="ativo" 
+            name="ativo"
+            value="true"
+            <%= usuario.ativo ? "checked" : "" %> 
+            class="edicao-usuario-checkbox" />
+    </div>
 
-      <!-- Botões -->
-      <div>
-        <a href="/usuarios">Cancelar</a>
-        <button type="submit">Atualizar</button>
-      </div>
+    <div class="edicao-usuario-botoes">
+        <a href="/usuarios" class="edicao-usuario-btn edicao-usuario-btn-cancelar">Cancelar</a>
+        <button type="submit" class="edicao-usuario-btn edicao-usuario-btn-submit">Atualizar</button>
+    </div>
 
-    </form>
+</form>
 
-  </div>
+</div>
 </main>
 
 <%- include('../includes/footer.ejs') %>
