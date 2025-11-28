@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - Dashboard</title>
+    <link rel="stylesheet" href="/CSS/style.css"> 
+</head>
+<body>
+    <%- include('../Includes/header', { titulo: 'Produtos' }) %>
+    <div class="dashboard-container">
+
+            <a href="/produtos/criar" class="add-product-button">Adicionar Novo Produto</a>
+
+            <div class="product-grid">
+                <% if (produtos && produtos.length > 0) { %>
+                    <% produtos.forEach(function(produto) { %>
+                        <div class="product-card">
+                            <h3><%= produto.nome_produto %></h3>
+                            <p>Valor: R$<%= produto.valor.toFixed(2) %></p>
+                            <p>Estoque: <%= produto.quant_estoque %></p>
+                            <p>Ativo: <%= produto.ativo ? 'Sim' : 'Não' %></p>
+                            
+                            <a href="/produtos/editar/<%= produto.id_produto %>" class="edit-button">Editar</a>
+                            
+                            <form action="/produtos/deletar/<%= produto.id_produto %>" method="POST" style="display:inline;">
+                                <button type="submit" class="edit-button delete-button">Deletar</button>
+                            </form>
+                        </div>
+                    <% }); %>
+                <% } else { %>
+                    <p>Nenhum produto cadastrado.</p>
+                <% } %>
+            </div>
+        </main>
+    </div>
+    <%- include('../Includes/footer') %>
+</body>
+</html>

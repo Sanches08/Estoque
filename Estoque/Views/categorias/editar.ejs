@@ -1,0 +1,50 @@
+<%- include('../includes/header.ejs', { titulo: 'Editar Categoria' }) %>
+
+<main class="categoria-form-main">
+
+<div class="categoria-form-container">
+
+<h2 class="categoria-form-titulo">Editar Categoria</h2>
+
+<% if (typeof mensagem !== 'undefined' && mensagem) { %>
+    <p class="categoria-form-mensagem"><%= mensagem %></p>
+<% } %>
+
+<form action="/categorias/editar/<%= categoria.id_categoria %>" method="POST" class="categoria-form">
+
+    <div class="categoria-form-campo">
+        <label for="id_categoria" class="categoria-form-label">
+            ID da Categoria
+        </label>
+        <input type="text"
+            id="id_categoria"
+            name="id_categoria"
+            value="<%= categoria.id_categoria %>"
+            readonly
+            class="categoria-form-input categoria-form-input-readonly" />
+    </div>
+
+    <div class="categoria-form-campo">
+        <label for="nome_categoria" class="categoria-form-label">
+            Nome da Categoria
+        </label>
+        <input type="text"
+            id="nome_categoria"
+            name="nome_categoria"
+            value="<%= categoria.nome_categoria %>"
+            required
+            class="categoria-form-input" />
+    </div>
+    
+
+    <div class="categoria-form-botoes">
+        <a href="/categorias" class="categoria-form-btn categoria-form-btn-cancelar">Cancelar</a>
+        <button type="submit" class="categoria-form-btn categoria-form-btn-submit">Salvar Alterações</button>
+    </div>
+
+</form>
+
+</div>
+</main>
+
+<%- include('../includes/footer.ejs') %>

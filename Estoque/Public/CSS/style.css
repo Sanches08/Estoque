@@ -4,7 +4,7 @@
 
 /* === Paleta de cores do tema === */
 :root {
-      --cor-fundo: #d6b5a1;
+      --cor-fundo: #e5c5b1;
       --cor-header: #b88f7b;
       --cor-texto: #4a2e25;
       --cor-botao: #8a6a5c;
@@ -567,7 +567,7 @@ footer {
     text-align: center;
     font-size: 60px;
     margin-bottom: 40px;
-    color: #000000;
+    color: var(--cor-texto);
     font-family: "Georgia", serif;
 }
 
@@ -976,4 +976,597 @@ footer {
 
 .criacao-usuario-btn-cancelar:hover {
     background-color: var(--cor-branca);
+}
+
+/* ===========================
+   MOVIMENTAÇÕES - LISTA
+=========================== */
+.conteudo-geral {
+    width: 90%;
+    margin: 40px auto;
+    font-family: "Times New Roman", serif;
+    color: #3a2b2b;
+}
+
+/* ===========================
+   TÍTULO
+=========================== */
+.titulo-geral {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+/* ===========================
+   WRAPPER DA TABELA
+=========================== */
+.tabela-wrapper {
+    width: 95%;
+    margin: 0 auto;
+    overflow-x: auto;
+}
+
+/* ===========================
+   TABELA
+=========================== */
+.tabela-movimentacoes {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+
+.tabela-movimentacoes th {
+    font-weight: 600;
+    padding: 12px 6px;
+    font-size: 1rem;
+    border-bottom: 1px solid #3a2b2b50; /* linha fina */
+    text-align: left;
+}
+
+.tabela-movimentacoes td {
+    padding: 10px 6px;
+    border-bottom: 1px solid #00000020; /* fininha igual ao print */
+    font-size: 0.95rem;
+}
+
+/* ===========================
+   LINHAS HOVER (opcional)
+=========================== */
+.tabela-movimentacoes tr:hover {
+    background-color: var(--cor-hover);
+}
+
+/* ===========================
+   MENSAGENS
+=========================== */
+.alerta-mensagem {
+    text-align: center;
+    padding: 12px;
+    background: #e7d0c5;
+    color: #4a2e25;
+    border-radius: 5px;
+    width: 70%;
+    margin: 0 auto 25px auto;
+    border: 1px solid #c4a092;
+}
+
+/* ===========================
+   RESPONSIVIDADE
+=========================== */
+@media (max-width: 768px) {
+    .titulo-geral {
+        font-size: 2.2rem;
+    }
+
+    .tabela-movimentacoes th,
+    .tabela-movimentacoes td {
+        padding: 8px 4px;
+    }
+}
+
+
+/* ===========================
+   CATEGORIAS - LISTA
+=========================== */
+
+/* Container principal da listagem */
+.categorias-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Lista de Categorias (não é um grid como usuários, mas uma lista linear) */
+.categorias-lista {
+    margin-top: 30px;
+}
+
+/* Card de cada categoria */
+.categoria-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd; /* Linha divisória */
+    background-color: transparent;
+    font-family: "Times New Roman", serif;
+}
+
+.categoria-nome {
+    font-size: 1.1em;
+    font-weight: 500;
+    flex-grow: 1; /* Permite que o nome ocupe o espaço */
+}
+
+.categoria-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Estilo do botão "Editar" e "Excluir" (semelhante ao estilo do botão da sua imagem) */
+.btn-editar, .btn-deletar {
+    /* Use as cores e estilos que você já definiu para os botões de ação */
+    background-color: #d8c3b9; /* Exemplo de cor bege/rosa dos seus painéis */
+    color: #333;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.btn-editar:hover, .btn-deletar:hover {
+    background-color: #bfa197;
+}
+
+/* Estilo do botão "Adicionar categoria" (FAB) */
+.btn-add {
+    /* Semelhante ao estilo do botão FAB da sua imagem */
+    display: block;
+    width: 200px;
+    text-align: center;
+    margin: 30px 0 0 auto; /* Alinha o botão à direita */
+    background-color: #d8c3b9;
+    color: #444;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-add:hover {
+    background-color: #bfa197;
+}
+
+/* ======== FORMULÁRIOS DE CATEGORIA (CRIAR e EDITAR) ======== */
+
+/* ------------------------------------------- */
+/* --- Layout e Container Principal --- */
+/* ------------------------------------------- */
+
+.categoria-form-main {
+    display: flex;
+    justify-content: center;
+    padding: 50px 20px;
+    background-color: var(--cor-fundo); /* Fundo suave */
+}
+
+.categoria-form-container {
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    color: var(--cor-texto);
+}
+
+.categoria-form-titulo {
+    text-align: center;
+    font-size: 2.0em;
+    font-weight: normal;
+    margin-bottom: 25px;
+    color: var(--cor-texto); 
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.categoria-form-mensagem {
+    /* Estilo para mensagens de erro */
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f8d7da; /* Exemplo: Fundo para erro */
+    color: #721c24; /* Exemplo: Texto para erro */
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* ------------------------------------------- */
+/* --- Campos de Formulário --- */
+/* ------------------------------------------- */
+
+.categoria-form-campo {
+    margin-bottom: 20px;
+}
+
+.categoria-form-label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    font-size: 0.9em;
+    color: #a08075; /* Cor de rótulo (Bege/Marrom) */
+}
+
+.categoria-form-input {
+    /* Estilo dos Inputs */
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e6c8be; 
+    border-radius: 5px;
+    box-sizing: border-box; 
+    font-size: 1em;
+    background-color: #f5e4df; /* Fundo suave (Bege/Rosa Claro) */
+    transition: background-color 0.3s, border-color 0.3s;
+    color: #333;
+}
+
+.categoria-form-input:focus {
+    border-color: #bfa197; /* Borda mais escura ao focar */
+    background-color: #fff; 
+    outline: none;
+}
+
+.categoria-form-input-readonly {
+    /* Estilo para ID (Somente leitura) */
+    background-color: #f0f0f0;
+    color: #777;
+    cursor: default;
+    border-style: solid;
+}
+
+/* ------------------------------------------- */
+/* --- Botões de Ação --- */
+/* ------------------------------------------- */
+
+.categoria-form-botoes {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end; 
+    gap: 15px;
+}
+
+.categoria-form-btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1em;
+    border: none;
+    text-align: center;
+}
+
+.categoria-form-btn-submit {
+    /* Botão Salvar/Criar (Cor primária) */
+    background-color: #d8c3b9;
+    color: #444;
+}
+
+.categoria-form-btn-submit:hover {
+    background-color: #bfa197;
+}
+
+.categoria-form-btn-cancelar {
+    /* Botão Cancelar/Secundário */
+    background-color: transparent;
+    color: #a08075;
+    border: 1px solid #e6c8be;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.categoria-form-btn-cancelar:hover {
+    background-color: #f0f0f0;
+}
+
+/* ===========================
+   ESTILOS PARA PÁGINA DE PRODUTOS
+=========================== */
+
+/* O conteúdo principal da página, excluindo o header e footer */
+.dashboard-container {
+    width: 100%;
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    box-sizing: border-box; 
+}
+
+/* O elemento <main> dentro do container (para o grid) */
+main {
+    padding-top: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    background-color: var(--cor-header);
+    padding: 15px 40px; 
+    box-shadow: 0 2px 5px var(--sombra-leve); 
+}
+
+/* Estilo do título "Produtos" (se vier do include header) */
+.header-titulo { 
+    font-family: 'Playfair Display', serif; 
+    font-size: 3.5em; 
+    font-weight: 400; 
+    text-align: center;
+    margin-bottom: 50px; 
+    color: var(--cor-texto);
+    letter-spacing: 1px; 
+}
+
+/* --- 4. BOTÃO 'ADICIONAR NOVO PRODUTO' --- */
+.add-product-button {
+    display: inline-block;
+    text-decoration: none;
+    background-color: var(--cor-sucesso); /* Cor de sucesso para o botão de adicionar */
+    color: var(--cor-branca);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    margin-bottom: 30px; 
+    transition: background-color 0.3s ease;
+    border: 1px solid var(--cor-sucesso);
+}
+
+.add-product-button:hover {
+    background-color: var(--cor-botao); /* Um tom um pouco mais escuro para hover */
+}
+
+/* --- 5. GRID DE PRODUTOS --- */
+.product-grid {
+    display: grid;
+    /* 4 colunas em telas grandes, responsivo */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+    gap: 25px; 
+}
+
+/* --- 6. CARD DE PRODUTO INDIVIDUAL --- */
+.product-card {
+    background-color: var(--cor-branca);
+    border: 1px solid var(--cor-botao); /* Borda baseada na cor do botão */
+    border-radius: 8px; 
+    padding: 20px;
+    box-shadow: 0 4px 10px var(--sombra-leve); 
+    height: auto; /* Deixa a altura flexível */
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: flex-start;
+}
+
+.product-card h3 {
+    font-size: 1.3em;
+    margin-top: 0; 
+    margin-bottom: 10px;
+    color: var(--cor-texto);
+    font-weight: 600; 
+    text-align: left;
+    width: 100%;
+}
+
+.product-card p {
+    font-size: 0.95em;
+    color: var(--cor-texto);
+    margin: 4px 0; 
+    text-align: left;
+    width: 100%;
+}
+
+/* Container para os botões no final do card */
+.product-card .edit-button,
+.product-card form {
+    margin-top: 10px; 
+    width: 100%; /* Ocupa a largura total para alinhamento */
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* --- 7. BOTÕES DE AÇÃO (EDITAR/DELETAR) --- */
+.edit-button {
+    display: inline-block;
+    text-decoration: none;
+    /* Cor do botão (baseado no header para harmonizar, ou no botão) */
+    background-color: var(--cor-header); 
+    color: var(--cor-texto);
+    border: 1px solid var(--cor-texto);
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    width: 48%; /* Para ocupar metade do espaço */
+    box-sizing: border-box;
+}
+
+.edit-button:hover {
+    background-color: var(--cor-hover);
+    color: var(--cor-branca);
+    border-color: var(--cor-hover);
+}
+
+.delete-button {
+    background-color: var(--cor-erro); /* Cor de erro para deletar */
+    color: var(--cor-branca);
+    border: 1px solid var(--cor-erro);
+    margin-left: 4%; /* Espaço entre o botão Editar e Deletar */
+}
+
+.delete-button:hover {
+    background-color: #c0392b; /* Tom mais escuro de vermelho */
+    border-color: #c0392b;
+}
+
+/* Alinhamento dos botões (junto com o inline-style no HTML) */
+.product-card form {
+    display: inline;
+    margin-top: 0;
+}
+
+.product-card .edit-button:last-of-type {
+    margin-left: 0;
+}
+
+
+/* --- 8. MENSAGEM DE ERRO/VAZIO --- */
+.dashboard-container > p {
+    text-align: center;
+    font-size: 1.2em;
+    color: var(--cor-texto);
+    margin-top: 40px;
+}
+
+/* --- 9. MEDIA QUERIES (Responsividade) --- */
+@media (max-width: 992px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 15px;
+    }
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: 1fr; /* Coluna única em celulares */
+    }
+    .edit-button,
+    .product-card form {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 5px;
+    }
+    .delete-button {
+        margin-left: 0;
+    }
+}
+
+/* --- 10. ESTILOS DO FORMULÁRIO (CRIAR/EDITAR) --- */
+
+.form-container {
+    background-color: var(--cor-branca);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* Limita a largura do formulário */
+    margin: 40px auto; /* Centraliza na tela */
+    border: 1px solid var(--cor-header);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block; /* Garante que a label ocupe toda a linha */
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--cor-texto);
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--cor-botao);
+    border-radius: 5px;
+    box-sizing: border-box; /* Inclui padding e borda na largura */
+    font-size: 1em;
+    color: var(--cor-texto);
+    background-color: #f9f9f9;
+}
+
+.form-group textarea {
+    resize: vertical; /* Permite redimensionar apenas verticalmente */
+    min-height: 100px;
+}
+
+/* Estilo específico para o checkbox */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.checkbox-group label {
+    display: inline-block;
+    margin-bottom: 0;
+    margin-left: 10px;
+    font-weight: 400;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+
+
+/* --- Botões de Ação do Formulário --- */
+.form-actions {
+    display: flex;
+    justify-content: flex-end; /* Alinha os botões à direita */
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.submit-button,
+.cancel-button {
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+}
+
+/* Botão Cadastrar/Submit */
+.submit-button {
+    background-color: var(--cor-texto); /* Cor mais forte para a ação principal */
+    color: var(--cor-branca);
+}
+
+.submit-button:hover {
+    background-color: var(--cor-hover);
+}
+
+/* Botão Cancelar */
+.cancel-button {
+    background-color: #ccc; /* Cinza para a ação secundária */
+    color: var(--cor-texto);
+    border: 1px solid var(--cor-texto);
+}
+
+.cancel-button:hover {
+    background-color: #bbb;
 }

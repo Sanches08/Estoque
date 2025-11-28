@@ -1,64 +1,74 @@
-<%- include('../includes/header.ejs', { titulo: 'Movimentações de Estoque' }) %>
+<%# Views/movimentacao/lista.ejs %>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico de Movimentações | Bloom Beauty</title>
 
-<main class="movimentacoes-container">
+    <link rel="stylesheet" href="/CSS/style.css">
+    <link rel="icon" href="/IMG/logo.png">
+</head>
 
-    <h1 class="titulo-pagina">Histórico de Movimentações</h1>
-    
-    <% if (typeof mensagem !== 'undefined' && mensagem) { %>
-        <div class="alerta-mensagem">
-            <%= mensagem %>
-        </div>
-    <% } %>
+<body>
 
-    <div class="movimentacoes-grid">
-        <% for (let mov of movimentacoes) { %>
+    <%- include('../includes/header.ejs', { titulo: 'Movimentações' }) %>
 
-            <div class="movimento-card 
-                <%= mov.tipo_movimento === 'ENTRADA' ? 'card-entrada' : 'card-saida' %>"
-                title="Movimentação ID: <%= mov.id_movimento %>">
+    <main class="conteudo-geral">
 
-                <p class="movimento-tipo <%= mov.tipo_movimento === 'ENTRADA' ? 'tipo-entrada' : 'tipo-saida' %>">
-                    <%= mov.tipo_movimento %>
-                </p>
+        <!-- TÍTULO como no seu print -->
+        <h1 class="titulo-geral">Histórico de movimentações</h1>
 
-                <div class="movimento-conteudo">
-                    
-                    <p class="movimento-produto"><%= mov.nome_produto %></p>
-                    
-                    <p class="movimento-detalhe-label">Quantidade:</p>
-                    <p class="movimento-quantidade"><%= mov.quant_movimentada %></p>
+        <!-- TABELA igual ao modelo do print -->
+        <div class="tabela-wrapper">
+            <table class="tabela-movimentacoes">
+                <thead>
+                    <tr>
+                        <th>ID Mov.</th>
+                        <th>Produto</th>
+                        <th>Tipo</th>
+                        <th>Qtd.</th>
+                        <th>Data</th>
+                        <th>Descrição</th>
+                        <th>Usuário</th>
+                    </tr>
+                </thead>
 
-                    <p class="movimento-detalhe-label">Realizada por:</p>
-                    <p class="movimento-usuario"><%= mov.nome_usuario %></p>
+                <tbody>
+                    <% if (movimentacoes && movimentacoes.length > 0) { %>
 
-                    <p class="movimento-detalhe-label">Data/Hora:</p>
-                    <p class="movimento-data">
-                        <% 
-                            // Formata a data (dat) para o formato local
-                            const dataFormatada = new Date(mov.dat).toLocaleString('pt-BR', {
-                                dateStyle: 'short', 
-                                timeStyle: 'short'
-                            });
-                        %>
-                        <%= dataFormatada %>
-                    </p>
+                        <% movimentacoes.forEach(mov => { %>
+                            <tr>
+                                <td><%= mov.id_movimento || mov.id_movimento %></td>
+                                <td><%= mov.id_produto %></td>
 
-                    <% if (mov.descricao) { %>
-                        <p class="movimento-detalhe-label">Descrição:</p>
-                        <p class="movimento-descricao"><%= mov.descricao %></p>
+                                <td><%= mov.tipo_movimento %></td>
+
+                                <td><%= mov.quantidade || mov.quant_movimentada %></td>
+
+                                <td>
+                                    <% const dataFormatada = new Date(mov.data_hora || mov.dat).toLocaleString("pt-BR", { dateStyle: "short" }); %>
+                                    <%= dataFormatada %>
+                                </td>
+
+                                <td><%= mov.motivo || mov.descricao || "—" %></td>
+                                <td><%= mov.nome_usuario %></td>
+                            </tr>
+                        <% }) %>
+
+                    <% } else { %>
+                        <tr>
+                            <td colspan="7" style="text-align:center; padding: 20px;">
+                                Nenhuma movimentação registrada.
+                            </td>
+                        </tr>
                     <% } %>
-                </div>
-            </div>
-
-        <% } %>
-    </div>
-
-    <% if (!movimentacoes || movimentacoes.length === 0) { %>
-        <div class="estado-vazio">
-            Nenhuma movimentação de estoque encontrada.
+                </tbody>
+            </table>
         </div>
-    <% } %>
 
     </main>
 
-<%- include('../includes/footer.ejs') %>
+    <%- include('../includes/footer.ejs') %>
+</body>
+</html>

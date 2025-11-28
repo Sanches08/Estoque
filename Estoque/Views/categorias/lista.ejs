@@ -1,0 +1,58 @@
+<%- include('../includes/header.ejs', { titulo: 'Categorias' }) %>
+
+<main class="categorias-container">
+
+    <h1 class="titulo-pagina">Categorias</h1>
+
+    <% if (typeof mensagem !== 'undefined' && mensagem) { %>
+        <div class="alerta-mensagem">
+            <%= mensagem %>
+        </div>
+    <% } %>
+    
+    <div class="categorias-lista">
+        <% for (let categoria of categorias) { %>
+
+            <div class="categoria-card">
+
+                <p class="categoria-nome"><%= categoria.nome_categoria %></p>
+
+                <div class="categoria-actions">
+
+                    <form action="/categorias/editar/<%= categoria.id_categoria %>" method="GET">
+                        <button type="submit" class="btn-editar" title="Editar">
+                            Editar
+                        </button>
+                    </form>
+
+                    <form action="/categorias/deletar/<%= categoria.id_categoria %>"
+                        method="POST"
+                        onsubmit="return confirm('Deseja realmente excluir a categoria <%= categoria.nome_categoria %>?');">
+                        <button type="submit" class="btn-deletar" title="Deletar">
+                            Excluir
+                        </button>
+                    </form>
+
+                </div>
+
+            </div>
+
+        <% } %>
+    </div>
+
+    <% if (!categorias || categorias.length === 0) { %>
+        <div class="estado-vazio">
+            Nenhuma categoria cadastrada.
+        </div>
+    <% } %>
+
+    <a href="/categorias/novo"
+        aria-label="Adicionar categoria"
+        title="Adicionar nova categoria"
+        class="btn-add">
+        Adicionar categoria
+    </a>
+
+</main>
+
+<%- include('../includes/footer.ejs') %>
