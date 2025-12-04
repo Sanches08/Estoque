@@ -49,6 +49,15 @@ const verificarAutenticacao = (req, res, next) => {
         res.redirect("/auth/login");
     }
 }
+
+app.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.log('Erro ao destruir a sessão:', err);
+        }
+        res.redirect('/auth/login');
+    });
+});
 app.use('/auth', loginRotas);
 app.use('/admin', verificarAutenticacao, adminRotas);
 app.use('/usuarios', verificarAutenticacao, usuariosRotas);

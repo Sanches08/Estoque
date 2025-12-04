@@ -11,10 +11,17 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     try {
         const usuario = req.session.usuarioLogado;
+        const TotalProdutosResult = await db.query('SELECT COUNT(*) FROM PRODUTO');
+        const TotalestoqueCriticoResult = await db.query('SELECT COUNT(*) FROM PRODUTO WHERE quant_estoque <= estoque_minimo');
+        const usuariosativos = await db.query('SELECT COUNT(*) FROM USUARIO WHERE ativo = true');
+        const produtosLegendas = await db.query('SELECT nome_produto, estoque_minimo, quant_estoque FROM produto ORDER BY nome_produto ASC');
 
         res.render('admin/dashboard', {
             titulo: 'Dashboard',
-            
+            TotalProdutosResult: TotalProdutosResult.rows[0].count,
+            TotalestoqueCriticoResult: TotalestoqueCriticoResult.rows[0].count,
+            usuariosativos: usuariosativos.rows[0].count,
+            produtosLegendas: produtosLegendas.rows,
             nomeUsuario: usuario
         });
     } catch (erro) {

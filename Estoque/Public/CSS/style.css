@@ -342,7 +342,8 @@ header {
 /* Usuário à direita */
 .user {
   display: flex;
-  align-items: center;
+  align-items: left;
+  max-width: 10%;
   gap: 6px;
   background-color: #e8ddd6;
   border-radius: 6px;
@@ -527,8 +528,9 @@ footer {
 
 .card-dash {
   background: #c3a593;
-  color: white;
+  color: var(--cor-texto);
   font-weight: bold;
+  font-size: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   display: flex;
@@ -540,6 +542,16 @@ footer {
 .linha-1 .card-dash {
   width: 260px;
   height: 140px;
+}
+.linha-2  .card-dash {
+  width: 600px;
+  height: 300px;
+}
+
+#graficosEstoque {
+    width: 100% !important;
+    height: 40px !important;
+    margin-top: 15px;
 }
 
 .card-horizontal {
@@ -646,7 +658,7 @@ footer {
 /* ======== ESTADO VAZIO ======== */
 .estado-vazio {
     margin-top: 40px;
-    text-align: center;
+    text-align: center; 
     color: #4a2e25;
 }
 
@@ -984,18 +996,19 @@ footer {
 .conteudo-geral {
     width: 90%;
     margin: 40px auto;
-    font-family: "Times New Roman", serif;
     color: #3a2b2b;
+    min-height: 80vh;
 }
 
 /* ===========================
-   TÍTULO
+   TÍTULO 
 =========================== */
 .titulo-geral {
     text-align: center;
     font-size: 3rem;
-    font-weight: 400;
+    font-size: 60px;
     margin-bottom: 40px;
+    font-family: "Georgia", serif;
     margin-top: 20px;
 }
 
@@ -1066,6 +1079,45 @@ footer {
     }
 }
 
+/* ===========================
+    CAMPO DATA-Movimentação
+=========================== */
+/* Campo de data estilizado */
+.data_movimento {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #000000;
+    background: #f9f9f9;
+    font-size: 15px;
+    font-family: inherit;
+    transition: all 0.2s ease-in-out;
+}
+/* Hover */
+.data_movimento:hover {
+    border-color: #000;
+}
+
+/* Foco */
+.data_movimento:focus {
+    outline: none;
+    border-color: var(--cor-hover);
+    box-shadow: 0 0 6px rgba(--cor-botao,0.4);
+}
+
+/* Ícone do calendário */
+.data_movimento::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(30%) sepia(50%) saturate(600%) hue-rotate(200deg);
+    opacity: 0.8;
+    transition: 0.2s;
+}
+
+.data_movimento::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+
+
 
 /* ===========================
    CATEGORIAS - LISTA
@@ -1076,6 +1128,7 @@ footer {
     max-width: 900px;
     margin: 40px auto;
     padding: 0 20px;
+    min-height: 80vh;
 }
 
 /* Lista de Categorias (não é um grid como usuários, mas uma lista linear) */
@@ -1287,22 +1340,13 @@ footer {
     margin: 0 auto; 
     padding: 20px; 
     box-sizing: border-box; 
+    min-height: 90vh;
 }
 
 /* O elemento <main> dentro do container (para o grid) */
 main {
     padding-top: 20px;
 }
-
-header {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center; 
-    background-color: var(--cor-header);
-    padding: 15px 40px; 
-    box-shadow: 0 2px 5px var(--sombra-leve); 
-}
-
 /* Estilo do título "Produtos" (se vier do include header) */
 .header-titulo { 
     font-family: 'Playfair Display', serif; 
@@ -1342,7 +1386,7 @@ header {
 
 /* --- 6. CARD DE PRODUTO INDIVIDUAL --- */
 .product-card {
-    background-color: var(--cor-branca);
+    background-color: var(#f5d3c4);
     border: 1px solid var(--cor-botao); /* Borda baseada na cor do botão */
     border-radius: 8px; 
     padding: 20px;
@@ -1385,7 +1429,6 @@ header {
 .edit-button {
     display: inline-block;
     text-decoration: none;
-    /* Cor do botão (baseado no header para harmonizar, ou no botão) */
     background-color: var(--cor-header); 
     color: var(--cor-texto);
     border: 1px solid var(--cor-texto);
@@ -1400,21 +1443,23 @@ header {
 }
 
 .edit-button:hover {
-    background-color: var(--cor-hover);
+    background-color: var(--cor-botao);
     color: var(--cor-branca);
     border-color: var(--cor-hover);
 }
 
 .delete-button {
-    background-color: var(--cor-erro); /* Cor de erro para deletar */
+    background-color: var(--cor-header); /* Cor de erro para deletar */
     color: var(--cor-branca);
-    border: 1px solid var(--cor-erro);
+    border: 1px solid var(--cor-hover);
+    color: var(--cor-texto);
+    border-radius: 5px;
     margin-left: 4%; /* Espaço entre o botão Editar e Deletar */
 }
 
 .delete-button:hover {
-    background-color: #c0392b; /* Tom mais escuro de vermelho */
-    border-color: #c0392b;
+    background-color: var(--cor-botao); /* Tom mais escuro de vermelho */
+    border-color: var(--cor-hover);
 }
 
 /* Alinhamento dos botões (junto com o inline-style no HTML) */
@@ -1569,4 +1614,115 @@ header {
 
 .cancel-button:hover {
     background-color: #bbb;
+}
+
+/* ===================
+    DASHBOARD- GRÁFICO
+=================== */
+/* ====== CONTAINER CENTRAL ====== */
+.dashboard {
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+}
+
+/* ====== LINHAS DO DASHBOARD ====== */
+.linha-dashboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+}
+
+/* ====== CARDS ====== */
+.card-dash {
+    background: #c8a693;
+    padding: 25px;
+    width: 260px;
+    height: 140px;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    color: #4a2f26;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.4;
+}
+
+/* Mostrar os números maiores */
+.card-dash span,
+.card-dash output {
+    font-size: 32px;
+    font-weight: 900;
+    margin-top: 5px;
+}
+
+/* ====== GRÁFICO ====== */
+.grafico-1 {
+    background: #d5b8a6;
+    padding: 25px;
+    width: 80%;
+    max-width: 900px;
+    border-radius: 18px;
+    margin: 40px auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+    font-size: 22px;
+    color: #4a2f26;
+    text-align: center;
+}
+
+/* Ajusta o canvas do gráfico */
+#graficosEstoque {
+    width: 100% !important;
+    height: 380px !important;
+    margin-top: 15px;
+}
+
+.card-dash p {
+    font-size: 40px;
+}
+
+
+.logout1 a {
+    display: flex;
+    text-decoration: none;
+    flex-direction: row;
+    color: white;
+    font-weight: bold;
+    align-items: center;
+}
+
+.logout1 img {
+    margin-right: 10px;
+}
+
+.logout1 {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--cor-fundo);
+    border-radius: 6px;
+    font-size: medium;
+    border: 3px solid black;
+    padding: 5px 10px;
+    top: 110px;
+    right: 20px;
+}
+.logout1 label {
+    cursor: pointer;
+}
+
+.logout1 a {
+    display: flex;
+    color: var(--cor-texto);
+    justify-content: right;
+    text-align: right;
 }

@@ -1,0 +1,68 @@
+ <%- include('../Includes/header', { titulo: 'Criar Nova Movimentação' }) %>
+
+<div class="dashboard-container">
+        
+    <form action="/movimentacoes/criar" method="POST" class="form-container"> 
+        <h2 class="criacao-usuario-titulo">Adicionar Movimentação</h2>
+
+        <!-- Tipo de Movimentação -->
+        <div class="form-group">
+            <label for="tipo_movimento">Tipo de Movimento:</label>
+            <select id="tipo_movimento" name="tipo_movimento" class="select" required>
+                <option value="entrada">Entrada</option>
+                <option value="saida">Saída</option>
+            </select>
+        </div>
+
+        <!-- Quantidade Movimentada -->
+        <div class="form-group">
+            <label for="quant_movimentada">Quantidade Movimentada:</label>
+            <input type="number" id="quant_movimentada" name="quant_movimentada" required min="1">
+        </div>
+
+        <!-- Data -->
+        <div class="form-group">
+            <label for="dat">Data da Movimentação:</label>
+            <input type="date" id="dat" name="dat" class="data_movimento" required>
+        </div>
+
+        <!-- Descrição -->
+        <div class="form-group">
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" name="descricao"></textarea>
+        </div>
+
+        <!-- Produto -->
+        <div class="form-group">
+            <label for="id_produto">Produto:</label>
+            <select id="id_produto" name="id_produto" class="select" required>
+                <% 
+                for (let p of produtos) {
+                     %>
+                    <option value="<%= p.id_produto %>">
+                        <%= p.nome_produto %>
+                    </option>
+                <% } %> 
+            </select>
+        </div>
+
+        <!-- Usuário Responsável -->
+        <div class="form-group">
+            <label for="id_usuario">Usuário Responsável:</label>
+            <select id="id_usuario" name="id_usuario" class="select" required>
+                <% for (let u of usuarios) { %>
+                    <option value="<%= u.id_usuario %>"><%= u.nome %></option>
+                <% } %>
+            </select> 
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="submit-button">Registrar Movimentação</button>
+            <a href="/movimentacoes" class="cancel-button">Cancelar</a>
+        </div>
+
+    </form>
+        
+</div>
+
+<%- include('../Includes/footer') %>

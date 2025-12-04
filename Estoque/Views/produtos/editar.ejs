@@ -1,0 +1,82 @@
+<%- include('../Includes/header', { titulo: 'Editar Produto' }) %>
+
+<main class="edicao-usuario-main">
+
+<div class="edicao-usuario-container">
+
+<h2 class="edicao-usuario-titulo">Editar Produto</h2>
+
+<% if (typeof mensagem !== 'undefined' && mensagem) { %>
+    <p class="edicao-usuario-mensagem"><%= mensagem %></p>
+<% } %>
+
+<form action="/produtos/editar/<%= produto.id_produto %>" method="POST" class="edicao-usuario-form">
+
+    <div class="edicao-usuario-campo">
+        <label for="id_produto" class="edicao-usuario-label">
+            ID do Produto
+        </label>
+        <input type="text"
+            id="id_produto"
+            name="id_produto"
+            value="<%= produto.id_produto %>"
+            readonly
+            class="edicao-usuario-input edicao-usuario-input-readonly" />
+    </div>
+
+    <div class="form-group">
+                <label for="nome_produto">Nome do Produto:</label>
+                <input type="text" id="nome_produto" name="nome_produto"  value="<%= produto.nome_produto %>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao" name="descricao"><%= produto.descricao %></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="quant_estoque">Quantidade em Estoque:</label>
+                <input type="number" id="quant_estoque" name="quant_estoque" required min="0" value="<% produto.quant_estoque %>">
+            </div>
+
+            <div class="form-group">
+                <label for="estoque_minimo">Estoque Mínimo:</label>
+                <input type="number" id="estoque_minimo" name="estoque_minimo" required min="0" value="<%= produto.estoque_minimo %>">
+            </div>
+
+            <div class="form-group">
+                <label for="valor">Valor (R$):</label>
+                <input type="number" id="valor" name="valor" required step="0.01" min="0" value="<%= produto.valor %>">
+            </div>
+            
+            <div class="form-group">
+                <label for="id_categoria">Categoria:</label>
+                 <select id="id_categoria" name="id_categoria" class="select">
+                    <% 
+                
+                    for (let categoria of categorias) { 
+                %>
+                        <option value="<%= categoria.id_categoria %>"><%= categoria.nome_categoria %></option>
+                <% 
+                    } 
+                
+                %>
+        </select>
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="ativo" name="ativo" <%= produto.ativo ? 'checked' : '' %>>
+                <label for="ativo">Produto Ativo</label>
+            </div>
+
+    <div class="edicao-usuario-botoes">
+        <a href="/produtos" class="edicao-usuario-btn edicao-usuario-btn-cancelar">Cancelar</a>
+        <button type="submit" class="edicao-usuario-btn edicao-usuario-btn-submit">Atualizar</button>
+    </div>
+
+</form>
+
+</div>
+</main>
+
+<%- include('../includes/footer.ejs') %>

@@ -8,27 +8,85 @@
 </head>
 <body>
     <%- include('../includes/header.ejs', { titulo: 'Painel Administrativo' }) %>
-
+    
  <main class="dashboard">
+
+  <div class="logout1">
+            <span class="texto-bem-vindo">
+                Bem-vindo(a), <b><%= nomeUsuario %></b>
+            </span>
+
+            <a href="/logout" class="botao-logout">Logout</a>
+        </div>
+
+
     <h1>Dashboard</h1>
 
     <!-- Primeira linha: 4 quadrados -->
     <div class="linha-dashboard linha-1">
-      <div class="card-dash">Produtos cadastrados</div>
-      <div class="card-dash">Produtos em estoque crítico</div>
-      <div class="card-dash">Usuários ativos</div>
-      <div class="card-dash">Produtos por categoria</div>
+      <div class="card-dash">
+        Produtos cadastrados:
+        <p><%= TotalProdutosResult %></p>
+      </div>
+      <div class="card-dash">Produtos em estoque crítico:
+        <p><%= TotalestoqueCriticoResult %></p>
+      </div>
+      <div class="card-dash">Usuários ativos:
+        <p><%= usuariosativos %></p>
+      </div>
+    
+
+
+    <div class="linha-dashboard linha-2">
+      <div class="grafico-1">Gráfico de Produtos em estoque
+        <canvas id="graficosEstoque"></canvas>
+      </div>
+  
     </div>
 
-    <!-- Segunda linha: 3 retângulos -->
-    <div class="linha-dashboard linha-1">
-      <div class="card-dash">Gráfico de Vendas</div>
-      <div class="card-dash">Pedidos Recentes</div>
-      <div class="card-dash">Mensagens</div>
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const dadosEstoque = {
+        labels: <%- JSON.stringify(produtosLegendas.map(item => item.nome_produto)) %>,
+        datasets: [
+            {
+                label: 'Estoque Atual',
+                data: <%- JSON.stringify(produtosLegendas.map(item => item.quant_estoque)) %>,
+                backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            },
+            {
+                label: 'Estoque Mínimo',
+                data: <%- JSON.stringify(produtosLegendas.map(item => item.estoque_minimo)) %>,
+                backgroundColor: 'rgba(255, 99, 132, 0.7)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }
+        ]
+    };
+
+    const configEstoque = {
+        type: 'bar',
+        data: dadosEstoque,
+        options: {
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    };
+
+    new Chart(
+        document.getElementById('graficosEstoque'),
+        configEstoque
+    );
+</script>
   </main>
 
 <%- include('../includes/footer.ejs') %>
+
+
 </body>
 </html>
 
